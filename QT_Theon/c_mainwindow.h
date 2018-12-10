@@ -5,8 +5,8 @@
 #define _WINSOCKAPI_
 //#define SCR_W 1920
 //#define SCR_H 1080
-#define SCR_W 1280
-#define SCR_H 1024
+#define SCR_W 1920
+#define SCR_H 1200
 #define SCR_LEFT_MARGIN -27
 #define SCR_TOP_MARGIN 25
 #define SCR_BORDER_SIZE 120

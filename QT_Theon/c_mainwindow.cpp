@@ -5,8 +5,6 @@
 #include <QMenu>
 #include <QMessageBox>
 
-
-#define MAX_VIEW_RANGE_KM   50
 static QPen penTargetHistory(QBrush(Qt::gray),1);
 static QPen penTargetEnemy(QBrush(Qt::darkMagenta),2);
 static QPen penTargetFriend(QBrush(QColor(0,200,200 ,255)),2);
