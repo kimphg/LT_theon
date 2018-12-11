@@ -3,7 +3,7 @@
 
 #define MAX_IREC 500
 //#include <QGeoCoordinate>
-#include <QNmeaPositionInfoSource>
+//#include <QNmeaPositionInfoSource>
 DataBuff dataB[MAX_IREC];
 //uchar udpFrameBuffer[MAX_IREC][OUTPUT_FRAME_SIZE];
 short iRec=0,iRead=0;

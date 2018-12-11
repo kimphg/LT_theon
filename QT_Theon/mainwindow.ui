@@ -5059,7 +5059,7 @@
         <rect>
          <x>220</x>
          <y>20</y>
-         <width>283</width>
+         <width>308</width>
          <height>171</height>
         </rect>
        </property>
@@ -17180,7 +17180,7 @@
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>70</y>
+      <y>80</y>
       <width>81</width>
       <height>41</height>
      </rect>
@@ -17212,7 +17212,7 @@
       <x>180</x>
       <y>10</y>
       <width>481</width>
-      <height>41</height>
+      <height>61</height>
      </rect>
     </property>
     <property name="title">
@@ -22902,7 +22902,7 @@
         <x>10</x>
         <y>10</y>
         <width>271</width>
-        <height>120</height>
+        <height>124</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_9">
@@ -28310,7 +28310,7 @@
        <rect>
         <x>20</x>
         <y>10</y>
-        <width>131</width>
+        <width>138</width>
         <height>167</height>
        </rect>
       </property>

@@ -126,7 +126,7 @@ public slots:
     void changeID();
 private:
     void setRadarState(radarSate radarState);
-    bool ProcDataAIS(BYTE *szBuff, int nLeng );
+    bool ProcDataAIS(uchar *szBuff, int nLeng );
 //public:
 //    void setScaleNM(unsigned short rangeNM);
 //    void drawAisTarget2(QPainter *p);

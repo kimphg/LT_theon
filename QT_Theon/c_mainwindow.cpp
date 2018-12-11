@@ -1498,15 +1498,15 @@ void Mainwindow::InitSetting()
     }
     else
     {
-
-        rec = QApplication::desktop()->screenGeometry(1);
-        if((rec.height()==SCR_H)&&(rec.width()==SCR_W))
-        {
-            this->showFullScreen();
-            //printf("error");
-            this->setGeometry(QApplication::desktop()->screenGeometry(1));//show on second screen
-            //setFixedSize(QApplication::desktop()->screenGeometry(1));
-        }
+        printf("\nscreen resolution doesn't match, show in window mode");
+//        rec = QApplication::desktop()->screenGeometry(1);
+//        if((rec.height()==SCR_H)&&(rec.width()==SCR_W))
+//        {
+//            this->showFullScreen();
+//            //printf("error");
+//            this->setGeometry(QApplication::desktop()->screenGeometry(1));//show on second screen
+//            //setFixedSize(QApplication::desktop()->screenGeometry(1));
+//        }
 
     }
 
