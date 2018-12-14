@@ -52,7 +52,7 @@
 #define TERRAIN_GAIN                0.9f
 #define TERRAIN_GAIN_1              0.1f
 #define TERRAIN_THRESH              0.5f
-#define TARGET_MAX_SPEED_MARINE     50.0
+#define TARGET_MAX_SPEED_MARINE     80.0
 #define ZOOM_SIZE                   550
 #define DISPLAY_RES_ZOOM            8192
 #define DISPLAY_SCALE_ZOOM          4

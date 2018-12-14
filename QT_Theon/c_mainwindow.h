@@ -7,8 +7,8 @@
 //#define SCR_H 1080
 #define SCR_W 1920
 #define SCR_H 1200
-#define SCR_LEFT_MARGIN -27
-#define SCR_TOP_MARGIN 25
+#define SCR_LEFT_MARGIN 200
+#define SCR_TOP_MARGIN 0
 #define SCR_BORDER_SIZE 120
 #define HR_FILE_EXTENSION ".r2d"
 //#include <qse>

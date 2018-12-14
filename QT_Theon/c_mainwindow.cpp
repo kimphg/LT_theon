@@ -1544,10 +1544,10 @@ void Mainwindow::InitSetting()
     ui->tabWidget_menu->mMoveable = true;
     ui->tabWidget_menu->raise();
     //hide iad
-    ui->tabWidget_iad->setGeometry(200,-800,ui->tabWidget_iad->width(),ui->tabWidget_iad->height());
+    /*ui->tabWidget_iad->setGeometry(200,-800,ui->tabWidget_iad->width(),ui->tabWidget_iad->height());
     ui->tabWidget_iad->hide();
     ui->tabWidget_iad->mMoveable = true;
-    ui->tabWidget_iad->raise();
+    ui->tabWidget_iad->raise();*/
 }
 void Mainwindow::ReloadSetting()
 {
