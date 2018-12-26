@@ -5,9 +5,11 @@
 #define SCALE_MAX 80
 #define SCALE_MIN 5
 #define HR_APP_PATH       "D:/HR2D/"
-#define HR_DATA_REC_PATH  "D:/HR2D/RecordData/"
 #define HR_CONFIG_FILE    "D:/HR2D/radar_config.xml"
+#define HR_CONFIG_FILE_BACKUP_1 "D:/HR2D/radar_config_backup_1.xml"
+#define HR_CONFIG_FILE_BACKUP_2 "D:/HR2D/radar_config_backup_2.xml"
 #define HR_CONFIG_FILE_DF "D:/HR2D/radar_config_default.xml"
+#define HR_ERROR_FILE "D:\\HR2D\\errorLog.txt"
 #define XML_ELEM_NAME     "radar_config"
 #define DEFAULT_LAT		20.707
 #define DEFAULT_LONG	106.78
@@ -21,6 +23,7 @@ public:
     CConfig(void);
     ~CConfig(void);
     static double shipHeadingDeg;
+    static double shipCourseDeg;
     static double shipSpeed;
     static double antennaAziDeg;
     static volatile long long int time_now_ms;
@@ -32,10 +35,12 @@ public:
     static int     getInt(QString key, int defaultValue=0);
     static void    setDefault();
     static void     SaveToFile();
+    static void ReportError(const char *error);
 
     //static QXmlStreamReader xml;
 private:
     static QHash<QString, QString> readFile();
+    static QHash<QString, QString> readFile(QString fileName);
 
 };
 

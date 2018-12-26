@@ -85,6 +85,7 @@ double dataProcessingThread::getSelsynAzi() const
 }
 dataProcessingThread::dataProcessingThread()
 {
+    isPaused=false;
     mRadMode = ModeComplexSignal;
     mAntennaAzi = 0;
     failureCount = 0;
@@ -577,6 +578,8 @@ void dataProcessingThread::run()
 
     while(true)
     {
+        msleep(1);
+        if(isPaused)continue;
         while(radarSocket->hasPendingDatagrams())
         {
             int len = radarSocket->pendingDatagramSize();

@@ -730,7 +730,7 @@ void Mainwindow::DrawMap()
     pMapPainter.drawPixmap((-pix.width()/2+pMap->width()/2),
                            (-pix.height()/2+pMap->height()/2),pix.width(),pix.height(),pix
                            );
-
+    repaint();
     //view frame
     //fill back ground
     //p.setBrush(QColor(40,60,100,255));
@@ -1208,7 +1208,7 @@ void Mainwindow::DrawIADArea(QPainter* p)
         p->setFont(QFont("Times",10));
         p->drawText(rect.x()+rect.width()-50,rect.y()+15,QString::number(mZoomSizeRg/0.1852,'f',1)+QString::fromUtf8(" Liên"));
         p->drawText(rect.x()+5,rect.y()+rect.height()-5,QString::number(mZoomSizeAz,'f',1)+QString::fromUtf8(" Độ"));
-        if(pRadar->img_zoom_ar)
+        if(!pRadar->img_zoom_ar->isNull())
         {
             QImage img = pRadar->img_zoom_ar->scaled(rect.width(),rect.height(),Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
             p->drawImage(rect,img);//todo:resize
@@ -1794,10 +1794,10 @@ void Mainwindow::UpdateVideo()
             pRadar->isClkAdcChanged = false;
         }
         pRadar->UpdateData();
-
+        CConfig::time_now_ms  = QDateTime::currentMSecsSinceEpoch() - pRadar->time_start_ms;
+        repaint();
     }
-    CConfig::time_now_ms  = QDateTime::currentMSecsSinceEpoch() - pRadar->time_start_ms;
-    repaint();
+
     /*QStandardItemModel* model = new QStandardItemModel(trackListPt->size(), 5);
     for (int row = 0; row < trackListPt->size(); ++row)
     {
@@ -2338,10 +2338,10 @@ void Mainwindow::sync1S()//period 1 second
     UpdateGpsData();
     ViewTrackInfo();
     int sampleTime = CLOCKS_PER_SEC*1.4/frameRate;
-    if(sampleTime>25)sampleTime=25;
+    if(sampleTime<25)sampleTime=25;
     timerVideoUpdate.start(sampleTime);
     timerMetaUpdate.start(sampleTime*4);
-    ui->label_frame_rate->setText("FR:"+QString::number(frameRate));
+    ui->label_frame_rate->setText("FR:"+QString::number(1000/sampleTime));
     if(ui->toolButton_chi_thi_mt->isChecked())mTargetMan.OutputTargetToKasu();
     if(isScaleChanged ) {
 

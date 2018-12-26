@@ -609,7 +609,7 @@ void C_radar_data::drawSgn(short azi_draw, short r_pos)
     short py = data_mem.ykm[azi_draw][r_pos];
     if(px<=0||py<=0)return;
     short pSize = 1;
-    if(r_pos<200)pSize=0;
+    if(r_pos<150)pSize=0;
     else if(r_pos>800)pSize=2;
     if((px<pSize)||(py<pSize)||(px>=img_ppi->width()-pSize)||(py>=img_ppi->height()-pSize))return;
     for(short x = -pSize;x <= pSize;x++)
@@ -638,7 +638,7 @@ void C_radar_data::drawBlackAzi(short azi_draw)
         short py = data_mem.ykm[azi_draw][r_pos];
         if(px<=0||py<=0)continue;
         short pSize = 1;
-        if(r_pos<200)pSize=0;
+        if(r_pos<150)pSize=0;
         else if(r_pos>800)pSize=2;
 
         if((px<pSize)||(py<pSize)||(px>=img_ppi->width()-pSize)||(py>=img_ppi->height()-pSize))continue;
@@ -660,7 +660,7 @@ void C_radar_data::drawBlackAzi(short azi_draw)
         short py = data_mem.yzoom[azi_draw][r_pos];
         if(px<=0||py<=0)continue;
         short pSize = 1;
-        if(r_pos<200)pSize=0;
+        if(r_pos<150)pSize=0;
         else if(r_pos>800)pSize=2;
         if((px<pSize)||(py<pSize)||(px>=img_zoom_ppi->width()-pSize)||(py>=img_zoom_ppi->height()-pSize))continue;
 

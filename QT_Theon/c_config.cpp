@@ -1,7 +1,8 @@
 
 #include "c_config.h"
 //CConfig         mGlobbalConfig;
-
+#include <ctime>
+#include <iostream>
 double CConfig::shipHeadingDeg=5;
 double CConfig::shipSpeed=0;
 double CConfig::antennaAziDeg=0;
@@ -70,6 +71,18 @@ void CConfig::SaveToFile()
         attr.append(it.key(),it.value());
         ++it;
     }
+    if (QFile::exists(HR_CONFIG_FILE_BACKUP_2))
+    {
+        QFile::remove(HR_CONFIG_FILE_BACKUP_2);
+    }
+    if (QFile::exists(HR_CONFIG_FILE_BACKUP_1))
+    {
+        QFile::rename(HR_CONFIG_FILE_BACKUP_1,HR_CONFIG_FILE_BACKUP_2);
+    }
+    if (QFile::exists(HR_CONFIG_FILE))
+    {
+        QFile::rename(HR_CONFIG_FILE,HR_CONFIG_FILE_BACKUP_1);
+    }
     QXmlStreamWriter writer;
     QFile xmlFile(HR_CONFIG_FILE);
     xmlFile.open(QIODevice::WriteOnly);
@@ -94,17 +107,42 @@ void CConfig::setDefault()
 
 QHash<QString, QString> CConfig::readFile() {
 
-    QFile xmlFile(HR_CONFIG_FILE);
+   return readFile(HR_CONFIG_FILE);
+}
+void CConfig::ReportError(const char* error)
+{
+
+    freopen(HR_ERROR_FILE, "a", stderr );
+    time_t rawtime;
+    struct tm * timeinfo;
+    char buffer[80];
+
+    time (&rawtime);
+    timeinfo = localtime(&rawtime);
+
+    strftime(buffer,sizeof(buffer),"%d-%m-%Y %H:%M:%S    ",timeinfo);
+    std::cerr << buffer;
+    std::cerr << error;
+    std::cerr << std::endl;
+}
+QHash<QString, QString> CConfig::readFile(QString fileName)
+{
+    QFile xmlFile(fileName);
     xmlFile.open(QIODevice::ReadOnly);
+
     QXmlStreamReader xml;
     xml.setDevice(&xmlFile);
+    int nElement = 0;
     QHash<QString, QString> hashData;
     while (xml.readNextStartElement())
     {
+
         if(xml.name()==XML_ELEM_NAME)
         {
+
            for (uint i=0;i<xml.attributes().size();i++)
            {
+               nElement++;
                QXmlStreamAttribute attr = xml.attributes().at(i);
                hashData.insert( attr.name().toString(),
                                 attr.value().toString());
@@ -116,10 +154,23 @@ QHash<QString, QString> CConfig::readFile() {
         // an invalid state at the end. A single readNext()
         // will advance us to EndDocument.
         if (xml.hasError()) {
-            continue;
+            if(fileName==HR_CONFIG_FILE) readFile(HR_CONFIG_FILE_BACKUP_1);
+            else if(fileName==HR_CONFIG_FILE_BACKUP_1)readFile(HR_CONFIG_FILE_BACKUP_2);
+            else
+            {
+                ReportError("Config load failed");
+            }
+        }
+    }
+    if(!nElement)
+    {
+        if(fileName==HR_CONFIG_FILE) readFile(HR_CONFIG_FILE_BACKUP_1);
+        else if(fileName==HR_CONFIG_FILE_BACKUP_1)readFile(HR_CONFIG_FILE_BACKUP_2);
+        else
+        {
+            ReportError("Config load failed");
         }
     }
     xmlFile.close();
     return hashData;
 }
-
