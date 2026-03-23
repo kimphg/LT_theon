@@ -294,17 +294,9 @@ void CMap::LoadMap()
         m_url = QUrl();
         return;
     }
-    //QString path = "C:/Users/LamPT/Desktop/mapData/%1/%2_%3_%4.png" ;
+
     QString imageMapPath = mPath.arg(mScale).arg(grab.x()).arg(grab.y());
-//    if(QFile::exists(imageMapPath+".png"))imageMapPath =imageMapPath+".png";
-//    else if(QFile::exists(imageMapPath+".jpg"))imageMapPath+=".jpg";
-//    else
-//    {
-//        QString imageMapPathraw = mPathraw.arg(grab.x()).arg(grab.y()).arg(mScale)+".jpg";
-//        imageMapPath+=".jpg";
-//        if(QFile::exists(imageMapPathraw))
-//            QFile::copy(imageMapPathraw,imageMapPath);
-//    }
+
     QImage img(imageMapPath+".png");
     if (img.isNull())
     {
